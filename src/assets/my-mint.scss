@@ -1,0 +1,84 @@
+$color-primary:#fb7299 ;
+
+  .mint-header {
+    background-color: $color-primary;
+  }
+  .mint-button:not(.is-disabled):active::after {
+      opacity: .2 /* .6 */
+  }
+  .mint-button--primary {
+      background-color: $color-primary;
+  }
+  .mint-button--primary.is-plain {
+      border: 1px solid $color-primary;
+      color: $color-primary
+  }
+  .mint-badge.is-primary {
+    background-color: $color-primary
+  }
+  .mint-switch-input:checked + .mint-switch-core {
+    border-color: $color-primary;
+    background-color: $color-primary;
+  }
+//   .mint-navbar{
+//       height:55px;
+//       width: 325.5px;
+//       overflow-x: scroll;
+//   }
+//   .mint-navbar::-webkit-scrollbar { width: 0 !important }
+  .mint-navbar .mint-tab-item{
+      margin: 0;
+      flex: none;
+      color: #757575;
+  }
+  .mint-navbar .mint-tab-item.is-selected {
+    border-bottom: 3px solid $color-primary;
+    color: $color-primary;
+    font-size:14px;
+    margin-bottom: 0px;
+    width: 32px;
+  }
+  .mint-tab-item-label{
+      font-size:14px;
+  }
+  .mint-tabbar > .mint-tab-item.is-selected {
+    color: $color-primary;
+  }
+  .mint-searchbar-cancel {
+    color: $color-primary;
+  }
+  .mint-checkbox-input:checked + .mint-checkbox-core {
+    background-color: $color-primary;
+    border-color: $color-primary;
+  }
+  .mint-radio-input:checked + .mint-radio-core {
+    background-color: $color-primary;
+    border-color: $color-primary;
+  }
+  .mt-range-progress {
+    background-color: $color-primary;
+  }
+  .mt-progress-progress {
+    background-color: $color-primary;
+  }
+  .mint-msgbox-confirm {
+    color: $color-primary;
+  }
+  .mint-msgbox-confirm:active {
+    color: $color-primary;
+  }
+  .mint-datetime-action {
+    color: $color-primary;
+  }
+  .mint-popup {
+      left:0;
+      top:46px;
+      width:500px;
+      -webkit-transform: translate3d(0, 0, 0); 
+  }
+ .popUp_item_list .mint-tab-item-label{
+  // vertical-align:middle;
+  //  height:32px;
+  // width:32px;
+  //  white-space : normal nowrap ;
+ }  
