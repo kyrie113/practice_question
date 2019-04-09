@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import main from '@/components/main'
-import animation from '@/components/animation'
-import sonPage from '@/components/animations/sonPage'
+import main from '@/pages/main'
+import animation from '@/pages/animation'
+import sonPage from '@/pages/animations/sonPage'
 
 Vue.use(Router)
 

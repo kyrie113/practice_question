@@ -1,25 +1,25 @@
 <template>
-    <div class="top">
-      <div class="top_left"><img src="static/icon/topIcon.png"
-          alt=""></div>
-      <div class="top_search"><img src="static/icon/find.png"
-          alt=""
-          width="100%"
-          height="100%"></div>
-      <div class="top_user-icon"><img src="static/icon/userIcon.webp"
-          alt=""
-          width="100%"></div>
-      <button class="top-button">下载 App</button>
-    </div>
+  <div class="top">
+    <div class="top_left"><img src="static/icon/topIcon.png"
+        alt=""></div>
+    <div class="top_search"><img src="static/icon/find.png"
+        alt=""
+        width="100%"
+        height="100%"></div>
+    <div class="top_user-icon"><img src="static/icon/userIcon.webp"
+        alt=""
+        width="100%"></div>
+    <button class="top-button">下载 App</button>
+  </div>
 </template>
 <script>
 export default {
-    name:'top-banner',
+  name: 'top-banner'
 }
 </script>
 
 <style lang="scss" scoped>
-    .top {
+.top {
   position: fixed;
   top: 0px;
   z-index: 2500;
