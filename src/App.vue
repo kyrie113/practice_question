@@ -13,12 +13,33 @@
 <script>
 import topBanner from '@/components/bTopBanner.vue'
 import bNav from '@/components/bNav.vue'
+import axios from 'axios'
 export default {
   name: 'App',
   components: {
     topBanner,
     bNav
   },
+  created(){
+            axios({
+                method:'get',
+                url:'https://www.weixiaotong.com.cn/weixt/api/pc/base_term_listBySchoolYear',
+                data:{
+      "apiparams": {
+        "params": {
+            "campusid": 1615,
+            "openid": 172691,
+            "userid": 172691
+        },
+        "readonly": true
+    }
+}
+            }).then((response) =>{          
+                console.log(response)      
+            }).catch((error) =>{
+                console.log(error)      
+            })
+        },
 
   data() {
     return {
