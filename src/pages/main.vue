@@ -12,14 +12,14 @@
         </mt-swipe-item>
       </mt-swipe>
     </div>
-    <my-content :content=content></my-content>
+    <b-video :content=content></b-video>
   </div>
 </template>
 <script>
-import myContent from '@/components/my-content.vue'
+import bVideo from '@/components/bVideo.vue'
 export default {
   components: {
-    myContent
+    bVideo
   },
 
   data() {

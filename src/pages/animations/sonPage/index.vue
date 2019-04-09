@@ -11,5 +11,3 @@ export default {}
   margin-top: 200px;
 }
 </style>
-
-

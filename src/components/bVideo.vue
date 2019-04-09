@@ -5,13 +5,13 @@
       :key=key.item>
       <div class="box__img"
         :style="{
-            backgroundImage: 'url('+key.src+')' 
+            backgroundImage: 'url('+key.src+')'
           }">
-        <div class="img__container1"><img src="static/icon/video.png"
+        <div class="img__comment"><img src="static/icon/video.png"
             alt=""
             width="100%"
             height="100%"><span>{{key.num1}}万</span></div>
-        <div class="img__container2"><img src="static/icon/list.png"
+        <div class="img__tanmu"><img src="static/icon/list.png"
             alt=""
             width="100%"
             height="100%"><span>{{key.num2}}万</span></div>
@@ -22,7 +22,7 @@
 </template>
 <script>
 export default {
-  name: 'myContent',
+  name: 'bVideo',
   props: ['content']
 }
 </script>
@@ -49,7 +49,7 @@ export default {
           left: 10px;
         }
         .img {
-          &__container1 {
+          &__comment {
             width: 16px;
             height: 16px;
             position: absolute;
@@ -63,7 +63,7 @@ export default {
               width: 40px;
             }
           }
-          &__container2 {
+          &__tanmu {
             width: 16px;
             height: 16px;
             position: absolute;
@@ -83,4 +83,3 @@ export default {
   }
 }
 </style>
-

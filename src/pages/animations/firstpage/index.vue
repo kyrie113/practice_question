@@ -1,15 +1,73 @@
 <template>
-  <div class="text">
-    <div>ssss1312s</div>
+  <div class="container">
+    <b-video :content=content></b-video>
   </div>
 </template>
 <script>
-export default {}
+import bVideo from '@/components/bVideo.vue'
+export default {
+  components: {
+    bVideo
+  },
+  data() {
+    return {
+      content: [
+        {
+          src: 'static/contentImg/1.webp',
+          num1: 1,
+          num2: 2,
+          words: 'hahahah'
+        },
+        {
+          src: 'static/contentImg/2.webp',
+          num1: 1,
+          num2: 2,
+          words: 'lalalsds'
+        },
+        {
+          src: 'static/contentImg/3.webp',
+          num1: 1,
+          num2: 2,
+          words: 'xxxcsc'
+        },
+        {
+          src: 'static/contentImg/4.webp',
+          num1: 1,
+          num2: 2,
+          words: 'xxxxx'
+        },
+        {
+          src: 'static/contentImg/5.webp',
+          num1: 1,
+          num2: 2,
+          words: 'xxxxx'
+        },
+        {
+          src: 'static/contentImg/6.webp',
+          num1: 1,
+          num2: 2,
+          words: 'xxxxx'
+        },
+        {
+          src: 'static/contentImg/1.webp',
+          num1: 1,
+          num2: 2,
+          words: 'hahahah'
+        },
+        {
+          src: 'static/contentImg/1.webp',
+          num1: 1,
+          num2: 2,
+          words: 'hahahah'
+        }
+      ]
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
-.text {
-  margin-top: 100px;
+.container {
+  margin-top: 30px;
 }
 </style>
-

@@ -2,23 +2,22 @@
   <div id="app">
     <div class="back__color"></div>
     <top-banner></top-banner>
-    <my-nav :temp=temp
-      :selected=selected
-      :popupVisible=false>
-    </my-nav>
+    <b-nav :temp="temp"
+      :selected="selected"
+      :popupVisible="false">
+    </b-nav>
     <router-view />
   </div>
 </template>
 
 <script>
-import { METHODS } from 'http'
-import topBanner from '@/components/top-banner.vue'
-import myNav from '@/components/my-nav.vue'
+import topBanner from '@/components/bTopBanner.vue'
+import bNav from '@/components/bNav.vue'
 export default {
   name: 'App',
   components: {
     topBanner,
-    myNav
+    bNav
   },
 
   data() {
@@ -27,7 +26,7 @@ export default {
       selected: 1,
       temp: [
         { name: '首页', id: 1, to: '/' },
-        { name: '动画', id: 2, to: '/animation/sonPage' },
+        { name: '动画', id: 2, to: '/animation/firstPage' },
         { name: '番剧', id: 3, to: '/' },
         { name: '国创', id: 4, to: '/' },
         { name: '音乐', id: 5, to: '/' },
@@ -66,4 +65,3 @@ export default {
   background: #ffff;
 }
 </style>
-

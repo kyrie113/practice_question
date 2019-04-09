@@ -14,21 +14,21 @@
           width='100%'
           height="100%"></span>
     </div>
-    <div class="popUp">
+    <div class="pop-up">
       <mt-popup v-model="popupVisible"
         :modal=false
         :position='right'>
         <mt-navbar v-model="selected"
-          class="popUp__item">
+          class="pop-up__item">
           <mt-tab-item class="item__list"
             v-for=" item in temp"
             :key='item'
             :id="item.id">{{item.name}}</mt-tab-item>
         </mt-navbar>
-        <div class="modal"></div>
-        <div class="close-box">
+        <div class="pop-up__modal"></div>
+        <div class="pop-up__close-box">
           <div class="close-box__icon"
-            @click="popChange()"><img src="static/icon/up.png"
+            @click="popChange"><img src="static/icon/up.png"
               alt=""
               width='100%'
               height="100%"></div>
@@ -45,7 +45,7 @@ export default {
     tabLink(data) {
       this.$router.push(data.to)
     },
-    popChange: function() {
+    popChange() {
       this.popupVisible = !this.popupVisible
     }
   }
@@ -80,7 +80,7 @@ export default {
   }
 }
 
-.popUp {
+.pop-up {
   &__item {
     width: 375px;
     position: absolute;
