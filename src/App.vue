@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="back_color"></div>
+    <div class="back__color"></div>
     <top-banner></top-banner>
     <my-nav :temp=temp
       :selected=selected
@@ -27,7 +27,7 @@ export default {
       selected: 1,
       temp: [
         { name: '首页', id: 1, to: '/' },
-        { name: '动画', id: 2, to: '/animation' },
+        { name: '动画', id: 2, to: '/animation/sonPage' },
         { name: '番剧', id: 3, to: '/' },
         { name: '国创', id: 4, to: '/' },
         { name: '音乐', id: 5, to: '/' },
@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.back_color {
+.back__color {
   position: fixed;
   width: 400px;
   height: 84px;

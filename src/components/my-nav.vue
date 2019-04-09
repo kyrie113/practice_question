@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div class="head_line">
+    <div class="nav">
       <mt-navbar v-model="selected"
-        class="nav_bar">
+        class="nav__bar">
         <mt-tab-item v-for=" (item, index) in temp"
           :key='index'
           :id="item.id"
-          class="nav_bar_item"><span @click="tabLink(item)">{{item.name}}</span></mt-tab-item>
+          class="bar__item"><span @click="tabLink(item)">{{item.name}}</span></mt-tab-item>
       </mt-navbar>
-      <span class="popDown-btn"
+      <span class="pop-btn"
         @click="popChange()"><img src="static/icon/down.png"
           alt=""
           width='100%'
@@ -19,15 +19,15 @@
         :modal=false
         :position='right'>
         <mt-navbar v-model="selected"
-          class="popUp_item">
-          <mt-tab-item class="popUp_item_list"
+          class="popUp__item">
+          <mt-tab-item class="item__list"
             v-for=" item in temp"
             :key='item'
             :id="item.id">{{item.name}}</mt-tab-item>
         </mt-navbar>
         <div class="modal"></div>
-        <div class="close_box">
-          <div class="close_box_icon"
+        <div class="close-box">
+          <div class="close-box__icon"
             @click="popChange()"><img src="static/icon/up.png"
               alt=""
               width='100%'
@@ -52,43 +52,48 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.head_line {
+.nav {
   position: fixed;
   top: 59px;
   z-index: 1000;
-}
-.popDown-btn {
-  position: absolute;
-  width: 17.4px;
-  height: 17.75px;
-  top: -4px;
-  left: 335px;
-  z-index: 2000;
-}
-.nav_bar {
-  width: 325.5px;
-  overflow-x: scroll;
-  &_item {
-    margin-right: 20px;
-    margin-left: 18px;
-    flex: none;
-    color: #757575;
-    padding: 0;
-    padding-bottom: 8px;
+  &__bar {
+    width: 325.5px;
+    overflow-x: scroll;
+    .bar {
+      &__item {
+        margin-right: 20px;
+        margin-left: 18px;
+        flex: none;
+        color: #757575;
+        padding: 0;
+        padding-bottom: 8px;
+      }
+    }
+  }
+  .pop-btn {
+    position: absolute;
+    width: 17.4px;
+    height: 17.75px;
+    top: -4px;
+    left: 335px;
+    z-index: 2000;
   }
 }
+
 .popUp {
-  &_item {
+  &__item {
     width: 375px;
     position: absolute;
     flex-wrap: wrap;
     justify-content: flex-start;
     flex-direction: row;
     -webkit-align-items: center;
-    &_list {
-      display: block;
-      flex: 16%;
-      justify-content: flex-start;
+    .item {
+      &__list {
+        display: block;
+        flex: 16%;
+        justify-content: flex-start;
+      }
     }
   }
 }
@@ -99,20 +104,20 @@ export default {
   width: 252px;
   height: 40px;
 }
-.close_box {
+.close-box {
   position: relative;
   height: 35px;
   width: 375px;
   top: 180px;
   background-color: white;
-  &_icon {
+  &__icon {
     position: absolute;
     left: 44%;
     width: 20px;
     height: 12px;
   }
 }
-.nav_bar::-webkit-scrollbar {
+.nav__bar::-webkit-scrollbar {
   display: none;
 }
 </style>

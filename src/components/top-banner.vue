@@ -1,15 +1,15 @@
 <template>
   <div class="top">
-    <div class="top_left"><img src="static/icon/topIcon.png"
+    <div class="top__left"><img src="static/icon/topIcon.png"
         alt=""></div>
-    <div class="top_search"><img src="static/icon/find.png"
+    <div class="top__search"><img src="static/icon/find.png"
         alt=""
         width="100%"
         height="100%"></div>
-    <div class="top_user-icon"><img src="static/icon/userIcon.webp"
+    <div class="top__icon"><img src="static/icon/userIcon.webp"
         alt=""
         width="100%"></div>
-    <button class="top-button">下载 App</button>
+    <button class="top__button">下载 App</button>
   </div>
 </template>
 <script>
@@ -24,12 +24,12 @@ export default {
   top: 0px;
   z-index: 2500;
   color: #ffff;
-  &_left {
+  &__left {
     position: absolute;
     left: 14px;
     top: 6.5px;
   }
-  &_search {
+  &__search {
     position: absolute;
     width: 24px;
     height: 24px;
@@ -37,7 +37,7 @@ export default {
     left: 193px;
     top: 9.5px;
   }
-  &_user-icon {
+  &__icon {
     position: absolute;
     width: 24px;
     height: 24px;
@@ -45,7 +45,7 @@ export default {
     left: 240px;
     top: 6.5px;
   }
-  &-button {
+  &__button {
     position: absolute;
     width: 80px;
     height: 25px;
