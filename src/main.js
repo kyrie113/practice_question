@@ -7,7 +7,7 @@ import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import './assets/my-mint.scss'
 Vue.use(Mint)
-
+// Vue.use(axios)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
