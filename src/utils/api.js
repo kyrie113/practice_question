@@ -7,12 +7,12 @@ const api = (path, params) => {
   let data = qs.stringify({ apiparams: JSON.stringify(params) })
   return instance({
     method: 'POST',
-    url: 'http://10.10.10.190:8899/api/pc/' + path,
+    url: 'http://weixt.spacetech.com.cn:8090/weixt/api/' + path,
     data: data
   })
     .then(response => {
       if (response.status === 200) {
-        return response.data
+        return response.data.data
       }
     })
     .catch(error => {

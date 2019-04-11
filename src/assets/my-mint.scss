@@ -76,9 +76,18 @@ $color-primary: #fb7299;
   width: 375px;
   -webkit-transform: translate3d(0, 0, 0);
 }
-.popUp_item_list .mint-tab-item-label {
-  // vertical-align:middle;
-  //  height:32px;
-  // width:32px;
-  //  white-space : normal nowrap ;
+.picker-toolbar {
+  height: 48px;
+}
+.picker-toolbar-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 48 px;
+  line-height: 40px;
+  font-size: 16px;
+}
+.mint-popup {
+  top: 450px;
+  color: #88aeff;
 }
