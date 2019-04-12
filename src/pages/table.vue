@@ -13,10 +13,14 @@
           height="100%">
       </div>
     </div>
-    <div class="term">{{targetValue}}-{{targetValueOfWeek }}<span @click="openPicker"> <img src="static/icon/down.png"
-          alt=""
-          width="100%"
-          height="100%"></span></div>
+    <div class="term"
+      @click="openPicker">
+      <span>{{ targetValue }}-{{ targetValueOfWeek }}</span>
+      <img src="static/icon/down.png"
+        alt=""
+        width="100%"
+        height="100%">
+    </div>
     <div class="table">
       <div class="table__row">
         <div class="row__cell"
@@ -25,36 +29,48 @@
       </div>
       <div class="table__col">
         <div class="col__cell"
-          v-for='(item,index) in 14'
+          v-for='(item,index) in 15'
           :key='index'>
           {{item}}
         </div>
       </div>
-      <div class="table__container">5555</div>
+      <div class="table__container">
+        <td v-for="(item1,index) in scheduleList"
+          :key='index'>
+          <tr v-for="(item,index) in 6 "
+            :style="{classStyle}"
+            :key='index'>
+            <div v-show="(index+1)===item1.classNum">
+              <span>{{item1.courseName}}</span>
+              <span>{{item1.teacherName}}</span>
+            </div>
+          </tr>
+        </td>
+      </div>
     </div>
 
-    <mt-popup v-model="popupVisible"
-      position="bottom">
-      <mt-picker :slots="slots"
-        ref="picker"
-        :showToolbar="true"
-        @change="onValuesChange">
-        <div class="picker-toolbar-title">
-          <div class="usi-btn-cancel"
-            @click="openPicker">取消</div>
-          <div class="usi-btn-sure"
-            @click="handleConfirm">确定</div>
-        </div>
-        <hr>
-      </mt-picker>
-    </mt-popup>
+    <popup-picker :visible="isDisplayPopupPicker"
+      :leftList="schoolYearNameList"
+      :rightList="weekNameList"
+      @close="onPopupPickerClose"
+      @confirm="onPopupPickerConfirm"
+      @change="onPopupPickerChange"></popup-picker>
   </div>
 </template>
 <script>
 import api from '@/utils/api.js'
+import popupPicker from '@/components/popupPicker'
+import getColor from '@/utils/getColor.js'
+
 export default {
+  components: {
+    popupPicker
+  },
+
   data() {
     return {
+      classStyle: '',
+      termCode: '181902',
       weekWordList: [
         '',
         '周一',
@@ -68,31 +84,21 @@ export default {
       targetValue: null,
       targetValueOfWeek: null,
       classData: null,
-      popupVisible: false,
-      slots: [
-        {
-          flex: 1,
-          values: [],
-          className: 'slot1',
-          textAlign: 'center'
-        },
-        {
-          divider: true,
-          content: '-',
-          className: 'slot2'
-        },
-        {
-          flex: 1,
-          values: [],
-          className: 'slot3',
-          textAlign: 'center'
-        }
-      ]
+      schoolYearList: [],
+      schoolYearNameList: [],
+      weekNameList: [],
+      isDisplayPopupPicker: false,
+      weekClassNumber: null,
+      weekIndex: 0,
+      tableList: [],
+      scheduleList: []
     }
   },
+
   created() {
     this.reFindSchoolYear()
   },
+  updated() {},
 
   methods: {
     // 获取学年
@@ -106,24 +112,51 @@ export default {
         readonly: true
       }).then(data => {
         this.schoolYearList = data
-        this.slots[0].values = data.map(item => item.termName)
+        this.schoolYearNameList = data.map(item => item.termName)
+      })
+    },
+    // 获取课表
+    reFindSchedule() {
+      api('elective_schedule_listStu', {
+        params: {
+          campusid: 1615,
+          classid: 0,
+          stuid: 1561247655,
+          termcode: this.termCode
+        },
+        readonly: true
+      }).then(data => {
+        this.tableList = data
+        // console.log(data)
+        this.scheduleList = this.tableList[this.weekIndex].scheduleList
       })
     },
 
     openPicker() {
-      this.popupVisible = !this.popupVisible
+      this.isDisplayPopupPicker = true
     },
-    onValuesChange(picker, values) {
-      const index = this.slots[0].values.findIndex(item => item === values[0])
+
+    onPopupPickerChange(data) {
+      const index = this.schoolYearNameList.findIndex(item => item === data[0])
       if (index !== -1) {
         const weekList = this.schoolYearList[index].weekList
-        this.slots[2].values = weekList.map(item => item.weekName)
+        this.weekNameList = weekList.map(item => item.weekName)
       }
     },
-    handleConfirm() {
-      this.targetValue = this.$refs.picker.getValues()[0]
-      this.targetValueOfWeek = this.$refs.picker.getValues()[1]
-      this.popupVisible = false
+
+    onPopupPickerClose() {
+      this.isDisplayPopupPicker = false
+    },
+
+    onPopupPickerConfirm(data) {
+      this.isDisplayPopupPicker = false
+      this.targetValue = data[0]
+      this.targetValueOfWeek = data[1]
+      this.weekIndex = this.weekNameList.findIndex(
+        item => item === this.targetValueOfWeek
+      )
+      this.reFindSchedule()
+      console.log(this.weekIndex)
     }
   }
 }
@@ -155,6 +188,8 @@ export default {
   line-height: 60px;
   height: 60px;
   span {
+  }
+  img {
     display: inline-block;
     width: 16px;
     height: 16px;
@@ -177,7 +212,7 @@ export default {
   &__col {
     flex-direction: column;
     width: 46.88px;
-    display: inlineflex;
+    display: inline-grid;
   }
   .col {
     &__cell {
@@ -190,8 +225,21 @@ export default {
     }
   }
   &__container {
-    // display: inline-block;
-    width: 300px;
+    position: absolute;
+    display: inline-block;
+    width: 328px;
+    height: 482px;
+    td {
+      width: 328px;
+      height: 80px;
+      border-collapse: collapse;
+      tr {
+        cellpadding: 1px;
+        border-radius: 3px;
+        width: 47px;
+        background-color: red;
+      }
+    }
   }
 }
 </style>
