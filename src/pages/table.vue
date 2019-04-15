@@ -22,30 +22,21 @@
         height="100%">
     </div>
     <div class="table">
-      <div class="table__row">
-        <div class="row__cell"
-          v-for="(item,index) in weekWordList"
-          :key='index'>{{item}}</div>
+      <div class="table__nav">
+        <tr>
+          <td v-for="(item ,index) in  weekWordList"
+            :key="index">{{item}}</td>
+        </tr>
       </div>
-      <div class="table__col">
-        <div class="col__cell"
-          v-for='(item,index) in 15'
-          :key='index'>
-          {{item}}
-        </div>
-      </div>
-      <div class="table__container">
-        <td v-for="(item1,index) in scheduleList"
-          :key='index'>
-          <tr v-for="(item,index) in 6 "
-            :style="{classStyle}"
-            :key='index'>
-            <div v-show="(index+1)===item1.classNum">
-              <span>{{item1.courseName}}</span>
-              <span>{{item1.teacherName}}</span>
-            </div>
-          </tr>
-        </td>
+      <div class="table__body">
+        <tr v-for="(item,index ) in tableList"
+          :key="index">
+          <td>{{item.classNum}}</td>
+          <td v-for="(item,index ) in item.scheduleList "
+            :key='index'
+            :style="{backgroundColor:colorMap[item.courseName]}"><span>{{item.courseName}}</span><br><span>
+              {{item.teacherName}}</span></td>
+        </tr>
       </div>
     </div>
 
@@ -60,7 +51,6 @@
 <script>
 import api from '@/utils/api.js'
 import popupPicker from '@/components/popupPicker'
-import getColor from '@/utils/getColor.js'
 
 export default {
   components: {
@@ -70,7 +60,7 @@ export default {
   data() {
     return {
       classStyle: '',
-      termCode: '181902',
+      termCode: '181901',
       weekWordList: [
         '',
         '周一',
@@ -91,7 +81,17 @@ export default {
       weekClassNumber: null,
       weekIndex: 0,
       tableList: [],
-      scheduleList: []
+      scheduleList: [],
+      colorMap: {
+        语文: '#88AEFF',
+        政治: '#F0A882',
+        数学: '#AB8FFD',
+        化学: '#FFC44F',
+        英语: '#BBDC02',
+        生物: '#02DCA2',
+        历史: '#FF9962',
+        物理: '#00D6DD'
+      }
     }
   },
 
@@ -127,11 +127,13 @@ export default {
         readonly: true
       }).then(data => {
         this.tableList = data
-        // console.log(data)
         this.scheduleList = this.tableList[this.weekIndex].scheduleList
       })
     },
-
+    // 获取颜色
+    getColor(data) {
+      return this.colorMap.data
+    },
     openPicker() {
       this.isDisplayPopupPicker = true
     },
@@ -149,14 +151,29 @@ export default {
     },
 
     onPopupPickerConfirm(data) {
+      // console.log(data)
       this.isDisplayPopupPicker = false
       this.targetValue = data[0]
+      console.log(this.targetValue)
+      console.log(this.targetValue)
       this.targetValueOfWeek = data[1]
       this.weekIndex = this.weekNameList.findIndex(
         item => item === this.targetValueOfWeek
       )
+      switch (data[0]) {
+        case '18-19学年上学期':
+          this.termCode = 181901
+          break
+        case '18-19学年下学期':
+          this.termCode = 181902
+          break
+        case '18-19学年暑假':
+          this.termCode = 181904
+          break
+        default:
+          break
+      }
       this.reFindSchedule()
-      console.log(this.weekIndex)
     }
   }
 }
@@ -196,48 +213,25 @@ export default {
   }
 }
 .table {
-  &__row {
-    display: flex;
-  }
-  .row {
-    &__cell {
-      flex: 1;
-      height: 40px;
-      line-height: 40px;
-      color: #2894ff;
-      text-align: center;
-      background-color: #dcdcdc;
+  &__nav {
+    background-color: aqua;
+    // vertical-align: middle;
+    line-height: 40px;
+    height: 40px;
+    tr {
+      display: flex;
+      td {
+        flex: 1;
+      }
     }
   }
-  &__col {
-    flex-direction: column;
-    width: 46.88px;
-    display: inline-grid;
-  }
-  .col {
-    &__cell {
-      text-align: center;
-
-      height: 80px;
-      line-height: 46.88px;
-      color: #2894ff;
-      background-color: #dcdcdc;
-    }
-  }
-  &__container {
-    position: absolute;
-    display: inline-block;
-    width: 328px;
-    height: 482px;
-    td {
-      width: 328px;
-      height: 80px;
-      border-collapse: collapse;
-      tr {
-        cellpadding: 1px;
-        border-radius: 3px;
+  &__body {
+    width: 375px;
+    tr {
+      height: 50px;
+      td {
         width: 47px;
-        background-color: red;
+        vertical-align: middle;
       }
     }
   }
