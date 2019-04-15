@@ -35,7 +35,8 @@
             <td class="body__class-name">{{item.classNum}}</td>
             <td v-for="(item,index ) in item.scheduleList "
               :key='index'
-              :style="{backgroundColor:colorMap[item.courseName]}"><span class="body__course-name">{{item.courseName}}</span><br><span class="body__teacher-name">
+              :style="{backgroundColor:getColor(item.courseName)}">
+              <span class="body__course-name">{{item.courseName}}</span><br><span class="body__teacher-name">
                 {{item.teacherName}}</span></td>
           </tr>
         </table>
@@ -83,18 +84,31 @@ export default {
       weekClassNumber: null,
       weekIndex: 0,
       tableList: [],
-      scheduleList: [],
-      colorMap: {
-        语文: '#88AEFF',
-        政治: '#F0A882',
-        数学: '#AB8FFD',
-        化学: '#FFC44F',
-        英语: '#BBDC02',
-        生物: '#02DCA2',
-        历史: '#FF9962',
-        物理: '#00D6DD',
-        音乐: '#6C98FF'
-      }
+      classNameList: [],
+      colorList: [
+        'white',
+        '#88AEFF',
+        '#AB8FFD',
+        '#FFC44F',
+        '#BBDC02',
+        '#FF9ED5',
+        '#02DCA2',
+        '#F0A882',
+        '#88D4FF',
+        '#E98FFD',
+        '#FF9962',
+        '#76DC02',
+        '#FF9E9E',
+        '#00D6DD',
+        '#FF7979',
+        '#6C98FF',
+        '#FFBB7C',
+        '#FF7B52',
+        '#00DF8D',
+        '#78BFFE',
+        '#00C8FF',
+        '#D389FD'
+      ]
     }
   },
 
@@ -130,9 +144,23 @@ export default {
         readonly: true
       }).then(data => {
         this.tableList = data
-        this.scheduleList = this.tableList[this.weekIndex].scheduleList
+        let classList = data.map(item => item.scheduleList)
+        // 数组去重生成课程名数组
+        let lessonList = classList.map(item =>
+          item.map(item => item.courseName)
+        )
+        let lessonSet = new Set()
+        lessonList.map(item => item.map(item => lessonSet.add(item)))
+        this.classNameList = Array.from(lessonSet)
+        // console.log(this.classNameList)
       })
     },
+
+    getColor(lesson) {
+      const index = this.classNameList.findIndex(item => item === lesson)
+      return this.colorList[index]
+    },
+
     openPicker() {
       this.isDisplayPopupPicker = true
     },
@@ -172,6 +200,7 @@ export default {
         default:
           break
       }
+
       this.reFindSchedule()
     }
   }
