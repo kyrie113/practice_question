@@ -63,7 +63,7 @@ export default {
   data() {
     return {
       classStyle: '',
-      termCode: '181901',
+      termCode: '',
       weekWordList: [
         '',
         '周一',
@@ -74,17 +74,15 @@ export default {
         '周六',
         '周日'
       ],
-      targetValue: null,
-      targetValueOfWeek: null,
-      classData: null,
-      schoolYearList: [],
-      schoolYearNameList: [],
-      weekNameList: [],
+      targetValue: null, // 选择器返回的学期
+      targetValueOfWeek: null, // 选择器返回周数
+      schoolYearList: [], // 接口查询返回的年份和周数
+      schoolYearNameList: [], // 传给选择器的学期数组
+      weekNameList: [], // 传给选择器的周数数组
       isDisplayPopupPicker: false,
-      weekClassNumber: null,
-      weekIndex: 0,
-      tableList: [],
-      classNameList: [],
+      weekIndex: 0, // 周数的下标
+      tableList: [], // 学期接口返回的所有数据
+      classNameList: [], // 获取到的不重复的课程列表
       colorList: [
         'white',
         '#88AEFF',
@@ -114,6 +112,7 @@ export default {
 
   created() {
     this.reFindSchoolYear()
+    this.reFindSchedule()
   },
   updated() {},
 
@@ -130,6 +129,9 @@ export default {
       }).then(data => {
         this.schoolYearList = data
         this.schoolYearNameList = data.map(item => item.termName)
+        this.termCode = data[0].termcode
+        this.targetValue = data[0].termName
+        this.targetValueOfWeek = '第1周'
       })
     },
     // 获取课表
@@ -152,7 +154,6 @@ export default {
         let lessonSet = new Set()
         lessonList.map(item => item.map(item => lessonSet.add(item)))
         this.classNameList = Array.from(lessonSet)
-        // console.log(this.classNameList)
       })
     },
 
@@ -178,12 +179,10 @@ export default {
     },
 
     onPopupPickerConfirm(data) {
-      // console.log(data)
       this.isDisplayPopupPicker = false
       this.targetValue = data[0]
-      // console.log(this.targetValue)
+
       this.targetValueOfWeek = data[1]
-      // console.log(data[1])
       this.weekIndex = this.weekNameList.findIndex(
         item => item === this.targetValueOfWeek
       )
