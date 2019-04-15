@@ -29,14 +29,16 @@
         </tr>
       </div>
       <div class="table__body">
-        <tr v-for="(item,index ) in tableList"
-          :key="index">
-          <td>{{item.classNum}}</td>
-          <td v-for="(item,index ) in item.scheduleList "
-            :key='index'
-            :style="{backgroundColor:colorMap[item.courseName]}"><span>{{item.courseName}}</span><br><span>
-              {{item.teacherName}}</span></td>
-        </tr>
+        <table>
+          <tr v-for="(item,index ) in tableList"
+            :key="index">
+            <td class="body__class-name">{{item.classNum}}</td>
+            <td v-for="(item,index ) in item.scheduleList "
+              :key='index'
+              :style="{backgroundColor:colorMap[item.courseName]}"><span class="body__course-name">{{item.courseName}}</span><br><span class="body__teacher-name">
+                {{item.teacherName}}</span></td>
+          </tr>
+        </table>
       </div>
     </div>
 
@@ -90,7 +92,8 @@ export default {
         英语: '#BBDC02',
         生物: '#02DCA2',
         历史: '#FF9962',
-        物理: '#00D6DD'
+        物理: '#00D6DD',
+        音乐: '#6C98FF'
       }
     }
   },
@@ -130,10 +133,6 @@ export default {
         this.scheduleList = this.tableList[this.weekIndex].scheduleList
       })
     },
-    // 获取颜色
-    getColor(data) {
-      return this.colorMap.data
-    },
     openPicker() {
       this.isDisplayPopupPicker = true
     },
@@ -154,9 +153,9 @@ export default {
       // console.log(data)
       this.isDisplayPopupPicker = false
       this.targetValue = data[0]
-      console.log(this.targetValue)
-      console.log(this.targetValue)
+      // console.log(this.targetValue)
       this.targetValueOfWeek = data[1]
+      // console.log(data[1])
       this.weekIndex = this.weekNameList.findIndex(
         item => item === this.targetValueOfWeek
       )
@@ -214,9 +213,11 @@ export default {
 }
 .table {
   &__nav {
+    // border-collapse: collapse;
     background-color: aqua;
-    // vertical-align: middle;
+    font-size: 16px;
     line-height: 40px;
+    text-align: center;
     height: 40px;
     tr {
       display: flex;
@@ -226,12 +227,30 @@ export default {
     }
   }
   &__body {
+    table {
+      // border-collapse: collapse;
+    }
     width: 375px;
+    .body {
+      &__class-name {
+        background-color: aqua;
+        border-radius: 0;
+        border-collapse: collapse;
+      }
+      &__teacher-name {
+        font-size: 5px;
+      }
+    }
     tr {
       height: 50px;
       td {
+        height: 80px;
+        color: white;
         width: 47px;
         vertical-align: middle;
+        text-align: center;
+        border-radius: 6px;
+        padding: 2px 0;
       }
     }
   }

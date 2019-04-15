@@ -1,1 +1,0 @@
-console.log(colorMap.政治)
