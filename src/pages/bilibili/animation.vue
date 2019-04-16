@@ -20,8 +20,8 @@ export default {
     return {
       model: 1,
       banner: [
-        { id: 1, name: '推荐', url: '/animation/firstPage' },
-        { id: 2, name: 'MAD·AMV', url: '/animation/sonPage' },
+        { id: 1, name: '推荐', url: '/animation/recommend' },
+        { id: 2, name: 'MAD·AMV', url: '/animation/channel' },
         { id: 3, name: 'MMD·3D', url: '/' },
         { id: 4, name: '短片·手书·配音', url: '/' },
         { id: 5, name: '综合', url: '/' }

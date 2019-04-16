@@ -1,16 +1,44 @@
 <template>
-  <div class="container">
+  <div>
+    <div class="swip">
+      <mt-swipe :auto="4000">
+        <mt-swipe-item v-for="item in items"
+          :key="item.id">
+          <a :href="item.href">
+            <img :src="item.url">
+          </a>
+        </mt-swipe-item>
+      </mt-swipe>
+    </div>
     <b-video :content=content></b-video>
+    <b-footer></b-footer>
   </div>
 </template>
 <script>
-import bVideo from '@/components/bVideo.vue'
+import bVideo from '@/components/bilibili/bVideo.vue'
+import bFooter from '@/components/bilibili/bFooter.vue'
 export default {
   components: {
-    bVideo
+    bVideo,
+    bFooter
   },
+
   data() {
     return {
+      items: [
+        {
+          href: '',
+          url: 'static/bannerMove/1.webp'
+        },
+        {
+          href: '',
+          url: 'static/bannerMove/2.webp'
+        },
+        {
+          href: '',
+          url: 'static/bannerMove/3.webp'
+        }
+      ],
       content: [
         {
           src: 'static/contentImg/1.webp',
@@ -65,9 +93,25 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
-.container {
-  margin-top: 30px;
+a {
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+.head_line {
+  height: 44px;
+  top: 30px;
+}
+.swip {
+  width: 351px;
+  height: 109.98px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-top: 88px;
+  margin-left: 5px;
 }
 </style>
+
+

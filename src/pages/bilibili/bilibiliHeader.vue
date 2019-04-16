@@ -1,29 +1,30 @@
 <template>
   <div class="bilibili">
-    <div class="back__color"></div>
+    <div class="bilibili__back-modal"></div>
     <top-banner></top-banner>
     <b-nav :temp="temp"
       :selected="selected"
-      :popupVisible="false">
+      :popupVisible="popupVisible"
+      @close='onPopClose'>
     </b-nav>
     <router-view />
   </div>
 </template>
 <script>
-import topBanner from '@/components/bTopBanner.vue'
-import bNav from '@/components/bNav.vue'
+import topBanner from '@/components/bilibili/bBanner.vue'
+import bNav from '@/components/bilibili/bNav.vue'
 export default {
   components: { topBanner, bNav },
   data() {
     return {
-      popupVisible: false,
       selected: 1,
+      popupVisible: false,
       temp: [
         { name: '首页', id: 1, to: '/bilibili/main', componentName: 'main' },
         {
           name: '动画',
           id: 2,
-          to: '/animation/firstPage',
+          to: '/animation/recommend',
           componentName: 'animation'
         },
         { name: '番剧', id: 3, to: '/' },
@@ -50,8 +51,23 @@ export default {
         {}
       ]
     }
+  },
+  methods: {
+    onPopClose() {
+      this.popupVisible = !this.popupVisible
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
+.bilibili {
+  &__back-modal {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    height: 86px;
+    width: 100%;
+    background-color: white;
+  }
+}
 </style>

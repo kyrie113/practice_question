@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="nav">
-      <mt-navbar v-model="selected"
+      <mt-navbar v-model="isSelected"
         class="nav__bar">
         <mt-tab-item v-for=" (item, index) in temp"
           :key='index'
@@ -9,27 +9,24 @@
           class="bar__item"><span @click="tabLink(item)">{{item.name}}</span></mt-tab-item>
       </mt-navbar>
       <span class="pop-btn"
-        @click="popChange()"><img src="static/icon/down.png"
-          alt=""
+        @click="popChange"><img src="static/icon/down.png"
           width='100%'
           height="100%"></span>
     </div>
     <div class="pop-up">
       <mt-popup v-model="popupVisible"
-        :modal=false
-        :position='right'>
-        <mt-navbar v-model="selected"
+        :modal=false>
+        <mt-navbar v-model="isSelected"
           class="pop-up__item">
           <mt-tab-item class="item__list"
-            v-for=" item in temp"
-            :key='item'
+            v-for=" (item,index) in temp"
+            :key='index'
             :id="item.id">{{item.name}}</mt-tab-item>
         </mt-navbar>
         <div class="pop-up__modal"></div>
         <div class="pop-up__close-box">
           <div class="close-box__icon"
             @click="popChange"><img src="static/icon/up.png"
-              alt=""
               width='100%'
               height="100%"></div>
         </div>
@@ -40,13 +37,23 @@
 <script>
 export default {
   name: 'myNav',
-  props: ['selected', 'temp', 'popupVisible'],
+  // props: ['selected', 'temp', 'popupVisible'],  数据类型需要定义变量类型
+  props: {
+    popupVisible: Boolean,
+    selected: Number,
+    temp: { type: Array, default: () => [] }
+  },
+  data() {
+    return {
+      isSelected: this.selected // 路由二级跳转时同时改变了父子组件selected 的值，所以需要重新定义一个变量
+    }
+  },
   methods: {
     tabLink(data) {
       this.$router.push(data.to)
     },
     popChange() {
-      this.popupVisible = !this.popupVisible
+      this.$emit('close')
     }
   }
 }
@@ -96,14 +103,15 @@ export default {
       }
     }
   }
+  &__modal {
+    position: absolute;
+    top: 160px;
+    left: 117px;
+    width: 252px;
+    height: 40px;
+  }
 }
-.modal {
-  position: absolute;
-  top: 160px;
-  left: 117px;
-  width: 252px;
-  height: 40px;
-}
+
 .close-box {
   position: relative;
   height: 35px;
@@ -112,7 +120,8 @@ export default {
   background-color: white;
   &__icon {
     position: absolute;
-    left: 44%;
+    top: 160px;
+    left: 46%;
     width: 20px;
     height: 12px;
   }
@@ -120,6 +129,7 @@ export default {
 .nav__bar::-webkit-scrollbar {
   display: none;
 }
+.mint-popup {
+  top: 45px;
+}
 </style>
-
-

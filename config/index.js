@@ -10,11 +10,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
-        target: 'http://10.10.10.190:8899/',
+      '/weixt/api': {
+        target: 'http://weixt.spacetech.com.cn:8090',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '/api'
+          '^/weixt/api': '/weixt/api'
         }
       }
     },

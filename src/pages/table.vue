@@ -15,7 +15,7 @@
     </div>
     <div class="term"
       @click="openPicker">
-      <span>{{ targetValue }}-{{ targetValueOfWeek }}</span>
+      <span>{{ targetValueOfTerm }}-{{ targetValueOfWeek }}</span>
       <img src="static/icon/down.png"
         alt=""
         width="100%"
@@ -53,7 +53,7 @@
 </template>
 <script>
 import api from '@/utils/api.js'
-import popupPicker from '@/components/popupPicker'
+import popupPicker from '@/components/table/popupPicker'
 
 export default {
   components: {
@@ -74,13 +74,13 @@ export default {
         '周六',
         '周日'
       ],
-      targetValue: null, // 选择器返回的学期
+      targetValueOfTerm: null, // 选择器返回的学期
       targetValueOfWeek: null, // 选择器返回周数
       schoolYearList: [], // 接口查询返回的年份和周数
       schoolYearNameList: [], // 传给选择器的学期数组
       weekNameList: [], // 传给选择器的周数数组
       isDisplayPopupPicker: false,
-      weekIndex: 0, // 周数的下标
+      // weekIndex: 0, // 周数的下标
       tableList: [], // 学期接口返回的所有数据
       classNameList: [], // 获取到的不重复的课程列表
       colorList: [
@@ -119,31 +119,34 @@ export default {
   methods: {
     // 获取学年
     reFindSchoolYear() {
-      api('base_term_listBySchoolYear', {
-        params: {
-          campusid: 1615,
-          openid: 172691,
-          userid: 172691
-        },
-        readonly: true
+      api('/base_term_listBySchoolYear', 'post', {
+        data: {
+          params: {
+            campusid: 1615,
+            userid: 172691
+          },
+          readonly: true
+        }
       }).then(data => {
         this.schoolYearList = data
         this.schoolYearNameList = data.map(item => item.termName)
         this.termCode = data[0].termcode
-        this.targetValue = data[0].termName
+        this.targetValueOfTerm = data[0].termName
         this.targetValueOfWeek = '第1周'
       })
     },
     // 获取课表
     reFindSchedule() {
-      api('elective_schedule_listStu', {
-        params: {
-          campusid: 1615,
-          classid: 0,
-          stuid: 1561247655,
-          termcode: this.termCode
-        },
-        readonly: true
+      api('/elective_schedule_listStu', 'post', {
+        data: {
+          params: {
+            campusid: 1615,
+            classid: 0,
+            stuid: 1561247655,
+            termcode: this.termCode
+          },
+          readonly: true
+        }
       }).then(data => {
         this.tableList = data
         let classList = data.map(item => item.scheduleList)
@@ -180,12 +183,11 @@ export default {
 
     onPopupPickerConfirm(data) {
       this.isDisplayPopupPicker = false
-      this.targetValue = data[0]
-
+      this.targetValueOfTerm = data[0]
       this.targetValueOfWeek = data[1]
-      this.weekIndex = this.weekNameList.findIndex(
-        item => item === this.targetValueOfWeek
-      )
+      // this.weekIndex = this.weekNameList.findIndex(
+      //   item => item === this.targetValueOfWeek
+      // )                             // 获取周数下标来获取周课表，此处不用
       switch (data[0]) {
         case '18-19学年上学期':
           this.termCode = 181901

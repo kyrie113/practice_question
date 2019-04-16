@@ -29,6 +29,7 @@ export default {
 <style lang="scss" scoped>
 .video {
   position: relative;
+  height: 600px;
   top: -25px;
   &__box {
     width: 50%;

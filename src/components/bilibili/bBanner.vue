@@ -1,30 +1,25 @@
 <template>
   <div class="top">
-    <div class="top__left"><img src="static/icon/topIcon.png"
-        alt=""></div>
-    <div class="top__search"><img src="static/icon/find.png"
-        alt=""
-        width="100%"
-        height="100%"></div>
-    <div class="top__icon"><img src="static/icon/userIcon.webp"
-        alt=""
-        width="100%"></div>
-    <button class="top__button">下载 App</button>
+    <div class="top__bili-icon"><img src="static/icon/topIcon.png"></div>
+    <div class="top__search"><img src="static/icon/find.png"></div>
+    <div class="top__user-icon"><img src="static/icon/userIcon.webp"></div>
+    <button class="top__download-btn">下载 App</button>
   </div>
 </template>
 <script>
 export default {
-  name: 'top-banner'
+  name: 'banner'
 }
 </script>
 
 <style lang="scss" scoped>
 .top {
+  width: 100%;
   position: fixed;
   top: 0px;
-  z-index: 2500;
+  z-index: 1000;
   color: #ffff;
-  &__left {
+  &__bili-icon {
     position: absolute;
     left: 14px;
     top: 6.5px;
@@ -34,18 +29,27 @@ export default {
     width: 24px;
     height: 24px;
     overflow: hidden;
-    left: 193px;
+    left: 220px;
     top: 9.5px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
-  &__icon {
+  &__user-icon {
     position: absolute;
     width: 24px;
     height: 24px;
-    overflow: hidden;
-    left: 240px;
+    left: 265px;
     top: 6.5px;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
-  &__button {
+  &__download-btn {
     position: absolute;
     width: 80px;
     height: 25px;
@@ -54,9 +58,8 @@ export default {
     background-color: #fb7299;
     font-size: 13px;
     color: #ffff;
-    left: 275px;
+    left: 310px;
     top: 9.5px;
   }
 }
 </style>
-

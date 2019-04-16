@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import main from '@/pages/main'
-import bilibili from '@/pages/bilibili'
-import animation from '@/pages/animation'
-import sonPage from '@/pages/animations/sonPage'
-import firstPage from '@/pages/animations/firstPage'
+import main from '@/pages/bilibili/main'
+import bilibili from '@/pages/bilibili/bilibiliHeader'
+import animation from '@/pages/bilibili/animation'
+import channel from '@/pages/bilibili/animations/channel'
+import recommend from '@/pages/bilibili/animations/recommend'
 import table from '@/pages/table.vue'
 
 Vue.use(Router)
@@ -21,8 +21,8 @@ export default new Router({
           name: 'animation',
           component: animation,
           children: [
-            { path: 'firstPage', component: firstPage },
-            { path: 'sonPage', component: sonPage }
+            { path: 'recommend', component: recommend },
+            { path: 'channel', component: channel }
           ]
         },
         { path: 'main', name: 'main', component: main }
