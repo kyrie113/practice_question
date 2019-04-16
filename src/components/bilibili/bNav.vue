@@ -64,15 +64,16 @@ export default {
   top: 59px;
   z-index: 1000;
   &__bar {
-    width: 325.5px;
+    width: 372.6px;
     overflow-x: scroll;
     .bar {
       &__item {
         margin-right: 20px;
-        margin-left: 18px;
+        margin-left: 28px;
         flex: none;
         color: #757575;
         padding: 0;
+        font-size: 15.5px;
         padding-bottom: 8px;
       }
     }
@@ -82,14 +83,14 @@ export default {
     width: 17.4px;
     height: 17.75px;
     top: -4px;
-    left: 335px;
+    left: 371px;
     z-index: 2000;
   }
 }
 
 .pop-up {
   &__item {
-    width: 375px;
+    width: 414px;
     position: absolute;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -106,8 +107,8 @@ export default {
   &__modal {
     position: absolute;
     top: 160px;
-    left: 117px;
-    width: 252px;
+    left: 138px;
+    width: 276px;
     height: 40px;
   }
 }
@@ -121,7 +122,7 @@ export default {
   &__icon {
     position: absolute;
     top: 160px;
-    left: 46%;
+    left: 52%;
     width: 20px;
     height: 12px;
   }

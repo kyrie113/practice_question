@@ -60,6 +60,10 @@ export default {
     color: #ffff;
     left: 310px;
     top: 9.5px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid transparent; //自定义边框
+    outline: none;
   }
 }
 </style>

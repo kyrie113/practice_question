@@ -17,6 +17,7 @@
 <script>
 import bVideo from '@/components/bilibili/bVideo.vue'
 import bFooter from '@/components/bilibili/bFooter.vue'
+import content from '@/utils/data/videoDataList.js'
 export default {
   components: {
     bVideo,
@@ -39,56 +40,7 @@ export default {
           url: 'static/bannerMove/3.webp'
         }
       ],
-      content: [
-        {
-          src: 'static/contentImg/1.webp',
-          num1: 1,
-          num2: 2,
-          words: 'hahahah'
-        },
-        {
-          src: 'static/contentImg/2.webp',
-          num1: 1,
-          num2: 2,
-          words: 'lalalsds'
-        },
-        {
-          src: 'static/contentImg/3.webp',
-          num1: 1,
-          num2: 2,
-          words: 'xxxcsc'
-        },
-        {
-          src: 'static/contentImg/4.webp',
-          num1: 1,
-          num2: 2,
-          words: 'xxxxx'
-        },
-        {
-          src: 'static/contentImg/5.webp',
-          num1: 1,
-          num2: 2,
-          words: 'xxxxx'
-        },
-        {
-          src: 'static/contentImg/6.webp',
-          num1: 1,
-          num2: 2,
-          words: 'xxxxx'
-        },
-        {
-          src: 'static/contentImg/1.webp',
-          num1: 1,
-          num2: 2,
-          words: 'hahahah'
-        },
-        {
-          src: 'static/contentImg/1.webp',
-          num1: 1,
-          num2: 2,
-          words: 'hahahah'
-        }
-      ]
+      content
     }
   }
 }
@@ -105,13 +57,12 @@ a {
   top: 30px;
 }
 .swip {
-  width: 351px;
-  height: 109.98px;
+  width: 387.5px;
+  height: 121.5px;
   overflow: hidden;
   border-radius: 8px;
   margin-top: 88px;
-  margin-left: 5px;
+  margin-right: auto;
+  margin-left: auto;
 }
 </style>
-
-

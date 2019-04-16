@@ -8,11 +8,9 @@
             backgroundImage: 'url('+key.src+')'
           }">
         <div class="img__comment"><img src="static/icon/video.png"
-            alt=""
             width="100%"
             height="100%"><span>{{key.num1}}万</span></div>
         <div class="img__tanmu"><img src="static/icon/list.png"
-            alt=""
             width="100%"
             height="100%"><span>{{key.num2}}万</span></div>
         <span>{{key.words}}</span>
@@ -40,13 +38,13 @@ export default {
         background-repeat: no-repeat;
         background-size: 100% 100%;
         position: relative;
-        width: 170px;
-        height: 106px;
+        width: 187px;
+        height: 117px;
         border-radius: 6px;
         margin: auto;
         span {
           position: absolute;
-          top: 108px;
+          top: 120px;
           left: 10px;
         }
         .img {
@@ -54,7 +52,7 @@ export default {
             width: 16px;
             height: 16px;
             position: absolute;
-            top: 80px;
+            top: 90px;
             left: 10px;
             span {
               position: absolute;
@@ -68,7 +66,7 @@ export default {
             width: 16px;
             height: 16px;
             position: absolute;
-            top: 80px;
+            top: 90px;
             left: 100px;
             span {
               position: absolute;
