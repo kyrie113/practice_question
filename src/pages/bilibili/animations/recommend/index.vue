@@ -20,22 +20,28 @@
     </div>
     <b-video :content=cutData(content)></b-video>
     <bLine :title="madamv"></bLine>
-     <b-video :content=cutData(content)></b-video>
+    <b-video :content=cutData(content)></b-video>
+    <bLine :title="mmd"></bLine>
+    <b-video :content=cutData(content)></b-video>
+    <b-footer></b-footer>
   </div>
 </template>
 <script>
 import bVideo from '@/components/bilibili/bVideo.vue'
 import content from '@/utils/data/videoDataList.js'
 import bLine from '@/components/bilibili/bMiddleLine.vue'
+import bFooter from '@/components/bilibili/bFooter.vue'
 export default {
   components: {
     bVideo,
-    bLine
+    bLine,
+    bFooter
   },
   data() {
     return {
       content,
-      madamv: 'MAD·AMD'
+      madamv: 'MAD·AMD',
+      mmd: 'MMD·3D'
     }
   },
   methods: {

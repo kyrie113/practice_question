@@ -46,18 +46,23 @@ export default {
   &__back-modal {
     background-color: white;
     position: absolute;
-    height: 20px;
+    height: 96px;
+    width: 100%;
+    z-index: 100;
+    top: 49px;
   }
   .head {
     width: 414px;
     position: fixed;
-    top: 90px;
+    top: 73px;
     z-index: 1000;
     padding-top: 10px;
     // background-color: #ccc;
     &__nav {
       overflow: hidden;
       overflow-x: scroll;
+      height: 30px;
+      padding-top: 20px;
       .nav {
         &__item {
           white-space: nowrap;
@@ -67,6 +72,9 @@ export default {
           margin-left: 29px;
         }
       }
+    }
+    hr {
+      margin-top: 0px;
     }
   }
 }
