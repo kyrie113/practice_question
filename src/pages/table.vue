@@ -128,6 +128,8 @@ export default {
           readonly: true
         }
       }).then(data => {
+        data = data.data
+        console.log(data)
         this.schoolYearList = data
         this.schoolYearNameList = data.map(item => item.termName)
         this.termCode = data[0].termcode
@@ -148,6 +150,7 @@ export default {
           readonly: true
         }
       }).then(data => {
+        data = data.data.data
         this.tableList = data
         let classList = data.map(item => item.scheduleList)
         // 数组去重生成课程名数组
