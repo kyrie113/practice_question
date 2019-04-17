@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text">ssssssssssssss</div>
+    <div class="text">这里没有内容</div>
   </div>
 </template>
 <script>

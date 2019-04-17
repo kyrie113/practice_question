@@ -12,11 +12,13 @@
     </div>
     <b-video :content=content></b-video>
     <b-footer></b-footer>
+
   </div>
 </template>
 <script>
 import bVideo from '@/components/bilibili/bVideo.vue'
 import bFooter from '@/components/bilibili/bFooter.vue'
+
 import content from '@/utils/data/videoDataList.js'
 export default {
   components: {
@@ -41,6 +43,11 @@ export default {
         }
       ],
       content
+    }
+  },
+  methods: {
+    close() {
+      this.isOpen = false
     }
   }
 }

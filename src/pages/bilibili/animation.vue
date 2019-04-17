@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div class="container__back-modal"></div>
     <div class="head">
       <mt-navbar v-model="model"
         class="head__nav">
@@ -38,36 +39,42 @@ export default {
 </script>
 <style lang="scss" scoped>
 .container {
-  position: fixed;
-  margin-top: 96px;
-  left: 4px;
+  overflow: auto;
+  margin-top: 89px;
   color: gray;
+  width: 100%;
+  &__back-modal {
+    background-color: white;
+    position: absolute;
+    height: 20px;
+  }
   .head {
+    width: 414px;
     position: fixed;
-    top: 100px;
+    top: 90px;
     z-index: 1000;
+    padding-top: 10px;
+    // background-color: #ccc;
     &__nav {
-      width: 380px;
+      overflow: hidden;
       overflow-x: scroll;
       .nav {
         &__item {
           white-space: nowrap;
-          flex: 1;
           color: #757575;
           padding: 0;
           padding-bottom: 8px;
+          margin-left: 29px;
         }
       }
     }
   }
 }
-.nav_bar_an::-webkit-scrollbar {
+.head__nav::-webkit-scrollbar {
   display: none;
 }
-
 .mint-navbar .mint-tab-item.is-selected {
   border: none;
-  width: 44px;
   color: #fb7299;
 }
 </style>

@@ -9,10 +9,10 @@
           }">
         <div class="img__comment"><img src="static/icon/video.png"
             width="100%"
-            height="100%"><span>{{key.num1}}万</span></div>
+            height="100%"><span>{{key.watchNum}}万</span></div>
         <div class="img__tanmu"><img src="static/icon/list.png"
             width="100%"
-            height="100%"><span>{{key.num2}}万</span></div>
+            height="100%"><span>{{key.commentNum}}万</span></div>
         <span>{{key.words}}</span>
       </div>
     </div>
@@ -27,12 +27,13 @@ export default {
 <style lang="scss" scoped>
 .video {
   position: relative;
-  height: 600px;
-  top: -25px;
+  top: 7px;
+  overflow: hidden;
   &__box {
     width: 50%;
     float: left;
-    margin-top: 40px;
+    margin-top: 10px;
+    margin-bottom: 41px;
     .box {
       &__img {
         background-repeat: no-repeat;
@@ -44,6 +45,7 @@ export default {
         margin: auto;
         span {
           position: absolute;
+          font-size: 14.4px;
           top: 120px;
           left: 10px;
         }
@@ -80,5 +82,13 @@ export default {
       }
     }
   }
+}
+.video ::after {
+  clear: both;
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  visibility: hidden;
 }
 </style>
