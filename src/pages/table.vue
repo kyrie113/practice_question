@@ -128,8 +128,8 @@ export default {
           readonly: true
         }
       }).then(data => {
-        data = data.data
-        console.log(data)
+        data = data.data.data
+        // console.log(data)
         this.schoolYearList = data
         this.schoolYearNameList = data.map(item => item.termName)
         this.termCode = data[0].termcode
@@ -263,7 +263,7 @@ export default {
     table {
       // border-collapse: collapse;
     }
-    width: 375px;
+    width: 100%;
     .body {
       &__class-name {
         background-color: aqua;
@@ -279,7 +279,7 @@ export default {
       td {
         height: 80px;
         color: white;
-        width: 47px;
+        width: 52px;
         vertical-align: middle;
         text-align: center;
         border-radius: 6px;
@@ -287,5 +287,8 @@ export default {
       }
     }
   }
+}
+.mint-popup {
+  width: 414px;
 }
 </style>
