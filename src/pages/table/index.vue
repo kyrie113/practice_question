@@ -222,7 +222,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .top {
-  background-color: #0033cc;
+  background-color: #4d77ac;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -242,7 +242,7 @@ export default {
   }
 }
 .term {
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
   line-height: 60px;
   height: 60px;
@@ -257,11 +257,12 @@ export default {
 .table {
   &__nav {
     // border-collapse: collapse;
-    background-color: aqua;
-    font-size: 16px;
+    background-color: #f4f8f9;
+    font-size: 13px;
     line-height: 40px;
     text-align: center;
     height: 40px;
+    color: #5b97d4;
     tr {
       display: flex;
       td {
@@ -276,7 +277,7 @@ export default {
         img {
           margin: 0 auto;
           display: block;
-          margin-top: 50px;
+          margin-top: 180px;
         }
         span {
           display: block;
@@ -293,9 +294,11 @@ export default {
     width: 100%;
     .body {
       &__class-name {
-        background-color: aqua;
+        width: 35px;
+        background-color: #f4f8f9;
         border-radius: 0;
         border-collapse: collapse;
+        color: black;
       }
       &__teacher-name {
         font-size: 5px;
