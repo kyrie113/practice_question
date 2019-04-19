@@ -5,7 +5,7 @@ import bilibili from '@/pages/bilibili/bilibiliHeader'
 import animation from '@/pages/bilibili/animation'
 import channel from '@/pages/bilibili/animations/channel'
 import recommend from '@/pages/bilibili/animations/recommend'
-import table from '@/pages/table.vue'
+import table from '@/pages/table'
 
 Vue.use(Router)
 
