@@ -29,7 +29,9 @@
         </tr>
       </div>
       <div class="table__body">
-        <div class="body__no-lesson"><img src="static/icon/tableIcon.svg"></div>
+        <div v-if="showImg"
+          class="body__no-lesson"><img src="static/icon/tableIcon.svg">
+          <span>暂无课表</span></div>
         <table>
           <tr v-for="(item,index ) in tableList"
             :key="index">
@@ -53,7 +55,8 @@
   </div>
 </template>
 <script>
-import api from '@/utils/api.js'
+// import api from '@/utils/api.js'
+import api from '@/utils/myApi.js'
 import popupPicker from '@/components/table/popupPicker'
 
 export default {
@@ -63,6 +66,7 @@ export default {
 
   data() {
     return {
+      showImg: false,
       classStyle: '',
       termCode: '',
       weekWordList: [
@@ -120,17 +124,15 @@ export default {
   methods: {
     // 获取学年
     reFindSchoolYear() {
-      api('/base_term_listBySchoolYear', 'post', {
-        data: {
-          params: {
-            campusid: 1615,
-            userid: 172691
-          },
-          readonly: true
-        }
+      api('base_term_listBySchoolYear', {
+        params: {
+          campusid: 1615,
+          userid: 172691
+        },
+        readonly: true
       }).then(data => {
         data = data.data.data
-        // console.log(data)
+
         this.schoolYearList = data
         this.schoolYearNameList = data.map(item => item.termName)
         this.termCode = data[0].termcode
@@ -140,27 +142,34 @@ export default {
     },
     // 获取课表
     reFindSchedule() {
-      api('/elective_schedule_listStu', 'post', {
-        data: {
-          params: {
-            campusid: 1615,
-            classid: 0,
-            stuid: 1561247655,
-            termcode: this.termCode
-          },
-          readonly: true
-        }
+      api('elective_schedule_listStu', {
+        params: {
+          campusid: 1615,
+          classid: 0,
+          stuid: 1561247655,
+          termcode: this.termCode
+        },
+        readonly: true
       }).then(data => {
-        data = data.data.data
-        this.tableList = data
-        const classList = data.map(item => item.scheduleList)
-        // 数组去重生成课程名数组
-        const lessonList = classList.map(item =>
-          item.map(item => item.courseName)
-        )
-        const lessonSet = new Set()
-        lessonList.map(item => item.map(item => lessonSet.add(item)))
-        this.classNameList = Array.from(lessonSet)
+        console.log(data.data.ret.code)
+        if (data.data.ret.code === '500') {
+          this.tableList = null
+          this.showImg = true
+        }
+
+        if (data.data.ret.code === '200') {
+          this.showImg = false
+          data = data.data.data
+          this.tableList = data
+          const classList = data.map(item => item.scheduleList)
+          // 数组去重生成课程名数组
+          const lessonList = classList.map(item =>
+            item.map(item => item.courseName)
+          )
+          const lessonSet = new Set()
+          lessonList.map(item => item.map(item => lessonSet.add(item)))
+          this.classNameList = Array.from(lessonSet)
+        }
       })
     },
 
@@ -261,6 +270,23 @@ export default {
     }
   }
   &__body {
+    .body {
+      &__no-lesson {
+        width: 100%;
+        img {
+          margin: 0 auto;
+          display: block;
+          margin-top: 50px;
+        }
+        span {
+          display: block;
+          width: 100px;
+          margin: 0 auto;
+          color: #cdcdcd;
+          text-align: center;
+        }
+      }
+    }
     table {
       // border-collapse: collapse;
     }

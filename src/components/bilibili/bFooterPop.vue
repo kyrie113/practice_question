@@ -40,18 +40,17 @@ export default {
   &__footer {
     display: flex;
     justify-content: space-between;
-
+    align-items: center;
     background-color: #000;
     // opacity: 0.8;  要写在mint的样式里 坑
     z-index: -100;
-    vertical-align: middle;
+
     height: 66px;
   }
   .footer {
     &__close-btn {
       width: 20px;
       height: 20px;
-      margin-top: 22px;
       margin-left: 5px;
       img {
         width: 100%;
@@ -61,7 +60,7 @@ export default {
     &__bili-icon {
       width: 35px;
       height: 35px;
-      margin-top: 13px;
+
       margin-left: 14px;
       img {
         width: 100%;
@@ -69,7 +68,6 @@ export default {
       }
     }
     &__detail {
-      margin-top: 13px;
       margin-right: 60px;
       .detail {
         &__top {
@@ -90,7 +88,7 @@ export default {
       height: 25px;
       color: #fff;
       text-align: center;
-      margin-top: 13px;
+
       margin-right: 20px;
     }
   }
