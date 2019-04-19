@@ -29,6 +29,7 @@
         </tr>
       </div>
       <div class="table__body">
+        <div class="body__no-lesson"><img src="static/icon/tableIcon.svg"></div>
         <table>
           <tr v-for="(item,index ) in tableList"
             :key="index">
