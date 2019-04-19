@@ -152,12 +152,12 @@ export default {
       }).then(data => {
         data = data.data.data
         this.tableList = data
-        let classList = data.map(item => item.scheduleList)
+        const classList = data.map(item => item.scheduleList)
         // 数组去重生成课程名数组
-        let lessonList = classList.map(item =>
+        const lessonList = classList.map(item =>
           item.map(item => item.courseName)
         )
-        let lessonSet = new Set()
+        const lessonSet = new Set()
         lessonList.map(item => item.map(item => lessonSet.add(item)))
         this.classNameList = Array.from(lessonSet)
       })
