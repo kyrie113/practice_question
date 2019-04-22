@@ -6,7 +6,7 @@ import animation from '@/pages/bilibili/animation'
 import channel from '@/pages/bilibili/animations/channel'
 import recommend from '@/pages/bilibili/animations/recommend'
 import table from '@/pages/table'
-
+import race from '@/pages/race'
 Vue.use(Router)
 
 export default new Router({
@@ -28,11 +28,15 @@ export default new Router({
         { path: 'main', name: 'main', component: main }
       ]
     },
-
     {
       path: '/table',
       name: table,
       component: table
+    },
+    {
+      path: '/race',
+      // name: race,
+      component: race
     }
   ]
 })
