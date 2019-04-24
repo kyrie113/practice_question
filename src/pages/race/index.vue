@@ -2,21 +2,23 @@
   <div>
     <div class="header">知识竞答</div>
     <hr>
-    <el-select v-model="value"
-      placeholder="光海微校通服务平台">
-      <el-option v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value">
-      </el-option>
-    </el-select>
-    <el-date-picker v-model="dateTimeValue"
-      @change="getMyDateTime"
-      type="daterange"
-      range-separator="-">
-    </el-date-picker>
-    <el-button type="success"
-      @click="regetPaper">查询</el-button>
+    <div class="search-banner">
+      <el-select v-model="value"
+        placeholder="光海微校通服务平台">
+        <el-option v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <el-date-picker v-model="dateTimeValue"
+        @change="getMyDateTime"
+        type="daterange"
+        range-separator="-">
+      </el-date-picker>
+      <el-button type="success"
+        @click="regetPaper">查询</el-button>
+    </div>
     <div class="container">
       <ul class="container__list">
         <li class="list__add"><i class="el-icon-plus"> </i></li>
@@ -29,7 +31,8 @@
               <span class="content__date">{{item.createTime}}</span>
               <i class="content__state-close">已关闭</i>
             </p>
-            <p class="content__count">{{item.sum}}份数据</p>
+            <p class="content__count">{{item.sum}}<span class="content__word">份数据</span></p>
+
           </div>
           <div class="item__action">
             <i class="el-icon-edit">详情</i>
@@ -64,13 +67,13 @@ export default {
   },
   created() {
     this.initData()
-    this.regetPaper()
+    this.reFindPaper()
     // let d = new Date()
     // console.log(d.toLocaleString())
   },
   methods: {
     // 获取试卷
-    regetPaper() {
+    reFindPaper() {
       api('survey_survey_list', {
         params: {
           campusid: 1615,
@@ -119,6 +122,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.header {
+  padding-left: 40px;
+}
+.search-banner {
+  padding-left: 40px;
+}
 .avatar-uploader .el-upload {
   border: 1px dashed #d9d9d9;
   border-radius: 6px;
@@ -200,7 +209,7 @@ export default {
               color: #737374;
               background-color: #e5e9f2;
               margin-left: 16px;
-              padding: 4px 10px;
+              padding: 3px 5px;
               height: 20px;
               font-style: normal;
               font-size: 12px;
@@ -216,12 +225,21 @@ export default {
               padding-right: 8px;
               line-height: 50px;
             }
+            &__word {
+              font-size: 15px;
+              margin-left: 5px;
+            }
           }
         }
         &__action {
-          text-align: right;
           padding: 0 10px;
-          padding-top: 5px;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-pack: end;
+          justify-content: flex-end;
+          -ms-flex-align: center;
+          align-items: center;
+          -ms-flex: 1;
           flex: 1;
           font-size: 12px;
         }
@@ -273,5 +291,8 @@ export default {
 }
 .el-input__inner {
   border-color: #46c37b;
+}
+.el-icon-edit {
+  margin-right: 16px;
 }
 </style>
